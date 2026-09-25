@@ -119,33 +119,48 @@ This project may use:
 
 This project is intended to explore how deep learning and computer vision can be used for emotion recognition. It also provides experience with CNN architecture, image preprocessing, model training, and statistical evaluation.
 
+## Results
+
+The trained model reaches **62.7% accuracy** on the FER-2013 test set (7,178 images). For comparison, humans agree on these images only about 65% of the time.
+
+## Quick Start (use the pre-trained model)
+
+The trained model is included in this repo, so you can try the webcam demo right away without training.
+
+```bash
+# 1. Download the project
+git clone https://github.com/VibhavK22/Emotion-Classification-using-CNNs.git
+cd Emotion-Classification-using-CNNs
+
+# 2. Create a virtual environment and install the libraries
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# 3. Run the webcam demo (press q in the video window to quit)
+python webcam.py
+```
+
+**Tips:** On macOS, click **Allow** when asked for camera access. For best results, put the camera at eye level, face it straight on, and sit in good lighting.
+
 ## Project Files
 
 | File | Description |
 |---|---|
-| `train.py` | Builds and trains the CNN on FER-2013 and saves `emotion_model.keras` |
 | `webcam.py` | Uses your webcam to detect your face and predict your emotion in real time |
+| `train.py` | Builds and trains the CNN on FER-2013 and saves `emotion_model.keras` |
+| `emotion_model.keras` | The trained CNN (62.7% test accuracy) |
+| `labels.txt` | The emotion names, in the order the model outputs them |
 | `requirements.txt` | Python libraries needed |
 
-## Setup
-
-```bash
-# 1. Create and activate a virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
-
-# 2. Install dependencies
-pip install -r requirements.txt
-```
-
-### Get the dataset
+## Training the Model Yourself (optional)
 
 1. Download FER-2013 from Kaggle: https://www.kaggle.com/datasets/msambare/fer2013
 2. Unzip it into a folder named `data/` so you have `data/train/...` and `data/test/...`
-
-## Usage
+3. Run:
 
 ```bash
-python train.py    # train the model (creates emotion_model.keras and labels.txt)
-python webcam.py   # start the webcam demo, press q to quit
+python train.py
 ```
+
+Training takes about an hour on a laptop. It overwrites `emotion_model.keras` and `labels.txt` with your new model.

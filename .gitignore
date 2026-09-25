@@ -3,4 +3,7 @@
 __pycache__/
 
 # The dataset is large, so don't upload it to GitHub
-data/
+data
+
+# Training output log
+train.log

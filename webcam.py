@@ -32,8 +32,25 @@ while True:
     # The model was trained on grayscale images, so convert the frame.
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+    # Boost contrast so faces are easier to find in dim or uneven lighting.
+    bright = cv2.equalizeHist(gray)
+
     # Find every face in the frame. Each face is a box: (x, y, width, height).
-    faces = face_detector.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+    # A smaller scaleFactor checks more face sizes; a lower minNeighbors is less strict.
+    faces = face_detector.detectMultiScale(
+        bright, scaleFactor=1.1, minNeighbors=4, minSize=(80, 80)
+    )
+
+    if len(faces) == 0:
+        cv2.putText(
+            frame,
+            "No face detected - face the camera straight on",
+            (20, 40),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.8,
+            (0, 0, 255),
+            2,
+        )
 
     for (x, y, w, h) in faces:
         # Cut out the face and shrink it to 48x48, like the training images.

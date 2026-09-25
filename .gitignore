@@ -1,0 +1,6 @@
+# Python virtual environment
+.venv/
+__pycache__/
+
+# The dataset is large, so don't upload it to GitHub
+data/

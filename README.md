@@ -118,3 +118,34 @@ This project may use:
 ## Purpose
 
 This project is intended to explore how deep learning and computer vision can be used for emotion recognition. It also provides experience with CNN architecture, image preprocessing, model training, and statistical evaluation.
+
+## Project Files
+
+| File | Description |
+|---|---|
+| `train.py` | Builds and trains the CNN on FER-2013 and saves `emotion_model.keras` |
+| `webcam.py` | Uses your webcam to detect your face and predict your emotion in real time |
+| `requirements.txt` | Python libraries needed |
+
+## Setup
+
+```bash
+# 1. Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+```
+
+### Get the dataset
+
+1. Download FER-2013 from Kaggle: https://www.kaggle.com/datasets/msambare/fer2013
+2. Unzip it into a folder named `data/` so you have `data/train/...` and `data/test/...`
+
+## Usage
+
+```bash
+python train.py    # train the model (creates emotion_model.keras and labels.txt)
+python webcam.py   # start the webcam demo, press q to quit
+```
